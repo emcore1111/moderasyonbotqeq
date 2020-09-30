@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
   if (!a) return message.reply('Kişi Belirt')
   if (!isim || !yaş) return message.reply('**İsim** Ve **Yaş** Belirt')
   if  (isNaN(yaş)) return message.reply('Yaşı Nasıl Rakamlardan Oluşmadan Belirtmeyi Düşünüyosun')
-    db.add(`erkek_${message.author.id}`, 1)
+    db.add(`kız_${message.author.id}`, 1)
 
  a.setNickname(`${isim} | ${yaş}`)
   a.roles.add(verilecek)
