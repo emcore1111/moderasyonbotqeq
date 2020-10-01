@@ -58,7 +58,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("**Moderatör:**", message.author)
     .addField("**Süre:**", args[1])
     .addField("**Sebep:**", `${sebep === "" ? "Sebep belirtilmemiş." : sebep}`)
-    .setFooter("© 2020 ro-BOT", bot.user.avatarURL())
+    .setFooter("© 2020 Kobs", bot.user.avatarURL())
   );
 
   setTimeout(function() {
