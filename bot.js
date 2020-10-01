@@ -120,3 +120,39 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 //--------------------------------KOMUTLAR-------------------------------\\
+
+client.on("userUpdate", async (oldUser, newUser) => {
+  if (oldUser.username !== newUser.username) {
+  const tag = 'TAGINIZ'
+  const sunucu = 'SUNUCU ID'
+  const kanal = 'KANAL ID'
+  const rol = 'ROL ID'
+
+  try {
+
+  if (newUser.username.includes(tag) && !client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.cache.has(rol)) {
+  await client.channels.cache.get(kanal).send(new Discord.MessageEmbed().setColor("GREEN").setDescription(`${newUser} ${tag} Tagımızı Aldığı İçin <@&${rol}> Rolünü Verdim`));
+  await client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.add(rol);
+  await client.guilds.cache.get(sunucu).members.cache.get(newUser.id).send(`Selam ${newUser.username}, Sunucumuzda ${tag} Tagımızı Aldığın İçin ${client.guilds.cache.get(sunucu).roles.cache.get(rol).name} Rolünü Sana Verdim!`)
+  }
+  if (!newUser.username.includes(tag) && client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.cache.has(rol)) {
+  await client.channels.cache.get(kanal).send(new Discord.MessageEmbed().setColor("RED").setDescription(`${newUser} ${tag} Tagımızı Çıkardığı İçin <@&${rol}> Rolünü Aldım`));
+  await client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.remove(rol);
+  await client.guilds.cache.get(sunucu).members.cache.get(newUser.id).send(`Selam **${newUser.username}**, Sunucumuzda ${tag} Tagımızı Çıkardığın İçin ${client.guilds.cache.get(sunucu).roles.cache.get(rol).name} Rolünü Senden Aldım!`)
+  }
+} catch (e) {
+console.log(`Bir hata oluştu! ${e}`)
+ }
+}
+});
+
+client.on('guildMemberAdd', async member => {
+    moment.locale('tr')
+    let tarih = moment(member.user.createdAt.getTime()).format('LLL')
+    let gün = moment.duration(new Date().getTime() - member.user.createdAt.getTime()).format("D")
+    let resim = new Discord.Attachment('https://media.giphy.com/media/12B39IawiNS7QI/giphy.gif')
+    let kişi = member.guild.memberCount
+    let kayıtcırol = member.guild.roles.cache.ind(kayıtcı => kayıtcı.id = "yetkili rol id")
+    let kanal = client.channels.cache.get("KANAL İD")
+    kanal.send(`Merhaba <@${member.user.id}> Sunucuya **hoşgeldin!**\n\nSeninle beraber **${kişi}** kişiyiz.\n\nTagımızı alarak bize destek olabilirsin\n\nHesap kuruluş tarihi; **${tarih}** [**${gün}** gün önce]\n\n${kayıtcırol} sizinle ilgilenecektir.`, ${resim})
+})
