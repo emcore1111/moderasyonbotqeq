@@ -120,7 +120,7 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 //--------------------------------KOMUTLAR-------------------------------\\
-
+//TAG ALANA ROL
 client.on("userUpdate", async (oldUser, newUser) => {
   if (oldUser.username !== newUser.username) {
   const tag = 'TAGINIZ'
@@ -145,7 +145,7 @@ console.log(`Bir hata oluştu! ${e}`)
  }
 }
 });
-
+///HG Mesajı
 client.on('guildMemberAdd', async member => {
     moment.locale('tr')
     let tarih = moment(member.user.createdAt.getTime()).format('LLL')
@@ -154,5 +154,6 @@ client.on('guildMemberAdd', async member => {
     let kişi = member.guild.memberCount
     let kayıtcırol = member.guild.roles.cache.ind(kayıtcı => kayıtcı.id = "yetkili rol id")
     let kanal = client.channels.cache.get("KANAL İD")
-    kanal.send(`Merhaba <@${member.user.id}> Sunucuya **hoşgeldin!**\n\nSeninle beraber **${kişi}** kişiyiz.\n\nTagımızı alarak bize destek olabilirsin\n\nHesap kuruluş tarihi; **${tarih}** [**${gün}** gün önce]\n\n${kayıtcırol} sizinle ilgilenecektir.`, ${resim})
+    kanal.send(`Merhaba <@${member.user.id}> Sunucuya **hoşgeldin!**\n\nSeninle beraber **${kişi}** kişiyiz.\n\nTagımızı alarak bize destek olabilirsin\n\nHesap kuruluş tarihi; **${tarih}** [**${gün}** gün önce]\n\n${kayıtcırol} sizinle ilgilenecektir.`, resim)
 })
+
