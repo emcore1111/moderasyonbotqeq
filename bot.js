@@ -118,6 +118,127 @@ client.on("error", e => {
 });
 
 client.login(ayarlar.token);
+////////////OtoCevap
+
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "tag") {
+    msg.channel.sendMessage("**TagınızıYaz**");
+  }
+});
+//////////////////////////////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "m!tag") {
+    msg.channel.sendMessage("**TagınızıYaz**");
+  }
+});
+/////////////////////////////////////
+
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "!tag") {
+    msg.channel.sendMessage("**TagınızıYaz**");
+  }
+});
+
+/////////////////Sa-As
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "sa") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin :wave:  ** "
+    );
+  }
+});
+
+////////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "sea") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin :wave: ** "
+    );
+  }
+});
+////////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "Sea") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin :wave: ** "
+    );
+  }
+});
+//////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "selam") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin  :wave: ** "
+    );
+  }
+});
+////////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "Selam") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin :wave: ** "
+    );
+  }
+});
+///////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "Selamun Aleyküm") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin  :wave: ** "
+    );
+  }
+});
+
+////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "selamlar") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin  :wave: ** "
+    );
+  }
+});
+//////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "selamunaleyküm") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin :wave: ** "
+    );
+  }
+});
+/////////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "SelamunAleyküm") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin :wave: ** "
+    );
+  }
+});
+
+//////////////
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "Selamun Aleyküm") {
+    msg.reply(
+      "**Aleyküm Selam Hoşgeldin :wave: ** "
+    );
+  }
+});
+//////////https://discord.gg/NP7Ar2j
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "link") {
+    msg.reply(
+      "**DiscordDavetLinkiniKoy ** "
+    );
+  }
+});
+
+client.on("message", async (msg, member, guild) => {
+  if (msg.content.toLowerCase() === "!link") {
+    msg.reply(
+      "**DiscordDavetLinkiniKoy ** "
+    );
+  }
+});
+
 
 //--------------------------------KOMUTLAR-------------------------------\\
 //TAG ALANA ROL
@@ -145,6 +266,9 @@ console.log(`Bir hata oluştu! ${e}`)
  }
 }
 });
+
+
+
 ///HG Mesajı
 client.on('guildMemberAdd', async member => {
     moment.locale('tr')
