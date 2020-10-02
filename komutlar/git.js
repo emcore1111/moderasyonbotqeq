@@ -1,19 +1,19 @@
 const Discord = require("discord.js")
 
 exports.run = async (client, message, args) => {
-    if(!message.member.roles.has("YetkiliRolİD")) return message.channel.send(`**Bu komutu kullanabilmek için\`YetkiliİsmiKoy \` yetkisine sahip olmasınız.**`);
+    if(!message.member.roles.has("YetkiliRolİD")) return message.channel.send(`**Bu komutu kullanabilmek için \`YetkiliİsimiKoy\` yetkisine sahip olmasınız.**`);
     if (!message.member.voiceChannel) return message.channel.send("Bir ses kanalında olman gerek")
-    let Gullanici = message.mentions.members.first();
-    if (!Gullanici.voiceChannel) return message.channel.send("Bu kullanıcı herhangi bir ses kanalında değil")
-    if (!Gullanici) return message.channel.send("Kullanıcı belirtmedin")
-    if (message.member.voiceChannel.id === Gullanici.voiceChannel.id) return message.channel.send("Zaten aynı kanaldasınız")
+    let kullanici = message.mentions.members.first();
+    if (!kullanici.voiceChannel) return message.channel.send("Bu kullanıcı herhangi bir ses kanalında değil")
+    if (!kullanici) return message.channel.send("Kullanıcı belirtmedin")
+    if (message.member.voiceChannel.id === kullanici.voiceChannel.id) return message.channel.send("Zaten aynı kanaldasınız")
     const filter = (reaction, user) => {
-        return ['✅', '❌'].includes(reaction.emoji.name) && user.id === Gullanici.id;
+        return ['✅', '❌'].includes(reaction.emoji.name) && user.id === kullanici.id;
     };
     let kobs = new Discord.RichEmbed()
         .setColor("BLUE")
-        .setDescription(`${Gullanici}, ${message.author} seni ${Gullanici.voiceChannel.name} odasına çekmek istiyor. Kabul ediyormusun?`)
-            .setFooter('test') 
+        .setDescription(`${kullanici}, ${message.author}  ${kullanici.voiceChannel.name} Yanına Gelmek İstiyor,Kabul Ediyormusun?`)
+            .setFooter('kobs') 
 
     let mesaj = await message.channel.send(kobs)
     await mesaj.react("✅")
@@ -25,29 +25,30 @@ exports.run = async (client, message, args) => {
     }).then(collected => {
         const reaction = collected.first();
         if (reaction.emoji.name === '✅') {
-            let kabul = new Discord.RichEmbed()
+            let sama = new Discord.RichEmbed()
                 .setColor("GREEN")
-                .setDescription(`${Gullanici} odaya çekildi`)
-            message.channel.send(kabul)
-           Gullanici.setVoiceChannel(message.member.voiceChannel)
+                .setDescription(`${kullanici} odaya çekildi`)
+            message.channel.send(sama).then(msg => msg.delete(5000));
+           message.member.setVoiceChannel(kullanici.voiceChannel)
         } else {
             let kobs = new Discord.RichEmbed()
                 .setColor("RED")
-                .setDescription(`${Gullanici} odaya çekilme teklifini reddetti`)
-            message.channel.send()
+                .setDescription(`${kullanici} odaya çekilme teklifini reddetti`)
+            message.channel.send(kobs).then(msg => msg.delete(5000));
         }
     })
+  
 }
 
 exports.conf = {
     enabled: true,
-    aliases: ['çek'],
+    aliases: ['git'],
     permLevel: 0
 };
 
 exports.help = {
-    name: "çek",
+    name: "git",
     description: "Etiketlediğiniz kullanıcıyı odaya çeker",
-    usage: ".çek @kullanıcı"
+    usage: "git @kullanıcı"
 
 };
