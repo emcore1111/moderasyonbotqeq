@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 exports.run = (client, message, args) => {
-	if (!message.guild) return message.author.send('Bu Komutu Sadece CodAre Sunucusunda Kulanabilirsiniz!');
+	if (!message.guild) return message.author.send('Bu Komutu Sadece Kobs Sunucusunda Kulanabilirsiniz!');
 
  //Bunu isterseniz açabilirsiniz. Kimselerin kullanacağını belirtirsiniz rollerin adını   if(message.member.roles.some(r=>["Kurucu"].includes(r.name)) ) {  
     let kullanici = args[0];
@@ -16,7 +16,7 @@ exports.run = (client, message, args) => {
 
 const Embed = new Discord.MessageEmbed()
  .setColor('#FFD100')
-.setAuthor('CodAre Ban Sorgulama', client.user.avatarURL())
+.setAuthor('Kobs Ban Sorgulama', client.user.avatarURL())
 .setDescription(`${user.tag} adlı kullanıcının ban nedeni: \n\n**${reason || "Neden Belirtilmemiş"}**`)
 message.channel.send(Embed)
     })

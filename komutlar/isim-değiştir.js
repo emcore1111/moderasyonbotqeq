@@ -1,44 +1,30 @@
 const Discord = require("discord.js")
 
-exports.run = async function(client, message, args) {
+module.exports.run = async function(client, message, args) {
 
-    if (!message.member.hasPermission("MANAGE_NICKNAMES")) return message.channel.send("Bu komudu kullanabilmek için `Kullanıcı Adlarını Yönet` yetkisine sahip olmanız gerek.");
 
+// Komutu Kullanabilecek Rol ID aşağıya girilecektir.
+if (!message.member.roles.cache.has("YetkiliRolİD")) return message.reply("Bunu Kullanmak İçin Belirtilen Role Sahip Olman Gerekli")
 
 const user = message.mentions.users.first()
 
-if (!user) {
-message.channel.send(new Discord.MessageEmbed())
-.setTitle("Hata!")
-.setDescription(`Bir kullanıcı etiketlemelisin!`)
-.setColor("RED")
+if (!user) return message.reply("Bir kullanıcı etiketlemelisin.")
 
 const nick = args.join(" ")
 
-if (!nick) {
-message.channel.send(new Discord.MessageEmbed())
-.setTitle("Hata!")
-.setDescription(`Lütfen bir isim belirtin!`)
-.setColor("RED")
-user.setNickname(nick).then(() => {
-message.channel.send(new Discord.MessageEmbed())
-.setTitle("Başarılı!")
-.setDescription(`Başarıyla, ${user} kullanıcısının ismi \`${nick}\` olarak ayarlandı`)
-.setFooter(`${message.author.tag} Adlı kullanıcı tarafından kullanıldı!`)
-.setColor("GREEN")
+if (!nick) return message.reply("Ayarlanacak İsmi Gir")
 
-}).catch(err => message.channel.send("İsim değiştirirken bir hata meydana geldi."))
+user.setNickname(nick).then(() => {
+return message.channel.send(`Başarıyla, ${user} kullanıcısının ismi \`${nick}\` olarak ayarlandı.`)
+}).catch(err => message.channel.send("Isim değiştirirken hata meydana geldi."))
 }
-  }
-  }
-exports.conf = {
+module.exports.conf = {
 enabled: true,
 guildOnly: true,
-aliases: ['isim-değiştir'],
+aliases: [],
 permLevel: 0
 }
-exports.help = {
-name: "nick",
-description: "Kullanıcıların ismini kolay bir şekil de değiştirebilirsiniz.",
-usage: "nick <isim>"
+module.exports.help = {
+name: "isim",
+usage: "isim"
 }

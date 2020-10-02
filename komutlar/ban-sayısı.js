@@ -2,9 +2,9 @@ const Discord = require('discord.js');
 
 exports.run = (client, message, args) => {
   
- let tanercodareli = message.guild;
-    tanercodareli.fetchBans()
-        .then(yasinbum => message.channel.send(`Sunucuda toplam \` ${yasinbum.cache.size} \` yasaklı kişi bulunmaktadır!`))
+ let os = message.guild;
+    os.fetchBans()
+        .then(kobs => message.channel.send(`Sunucuda toplam \` ${kobs.cache.size} \` yasaklı kişi bulunmaktadır!`))
         .catch(console.error);
 }
 
