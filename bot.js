@@ -244,10 +244,10 @@ client.on("message", async (msg, member, guild) => {
 //TAG ALANA ROL
 client.on("userUpdate", async (oldUser, newUser) => {
   if (oldUser.username !== newUser.username) {
-  const tag = 'TAGINIZ'
-  const sunucu = 'SUNUCU ID'
-  const kanal = 'KANAL ID'
-  const rol = 'ROL ID'
+  const tag = '!'
+  const sunucu = '727098900481048637'
+  const kanal = '761477627557969924'
+  const rol = '727099612418146314'
 
   try {
 
@@ -305,7 +305,7 @@ let kuruluş = `${gün} ${ay} ${yıl} ${saat}`
 	let embed = new Discord.MessageEmbed()
 	.setColor("BLACK")
     .setDescription(`<@${member.id}> Aramıza hoşgeldin seninle birlikte ${member.guild.memberCount} Kişi olduk \n Sunucumuzda kanalları görebilmen için kayıt olman gerekli bunun için yandaki ses odalarına girebilirsin. \n @Rol Adı Rolüne sahip kişiler kayıt işlemlerinle ilgilenecektir. \n Hesap kuruluş tarihi : ${kuruluş} \n #Kurallar kanalını okumayı unutma ! \n Umarız güzel zaman geçirirsin.`)
-  client.channels.cache.get("761477627557969924").send(embed)
+  client.channels.cache.get("LogKanalİd").send(embed)
 })
 
 /////OTOİSİM
@@ -313,4 +313,17 @@ client.on('guildMemberAdd', member => {
  member.setNickname('İsim Yaş')////YENI GELENLERE VERILCEK ISIM
 })
 
+//ŞÜpheli Güvenli Hesap Belirleme
+client.on("guildMemberAdd", async member => {
+      let gkisi = client.users.cache.get(member.id);
+      const ktarih = new Date().getTime() - gkisi.createdAt.getTime();   
 
+    if (ktarih < 2592000001) {
+    member.roles.add("Şüpheli hesap")
+    
+    }else{
+    
+    member.roles.add("Güvenilir Hesap")
+    
+      }
+});
