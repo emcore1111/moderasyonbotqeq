@@ -309,7 +309,7 @@ let kuruluş = `${gün} ${ay} ${yıl} ${saat}`
 })
 
 /////OTOİSİM
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', member => {  
  member.setNickname('İsim Yaş')////YENI GELENLERE VERILCEK ISIM
 })
 
