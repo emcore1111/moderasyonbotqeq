@@ -30,7 +30,7 @@ exports.run = (client, message, args) => {
         .addField('Kullanıcı Atıldı', member)
         .addField('Tarafından Atıldı', message.author)
         .addField('Sebebi', reason)
-        .setFooter('Tarihinde Atıldı', client.user.displayAvatarURL())
+        .setFooter('Kullanıcı Atıldı', client.user.displayAvatarURL())
         .setTimestamp()
 
         message.channel.send(kickembed);

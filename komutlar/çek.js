@@ -1,40 +1,53 @@
-const { MessageEmbed } = require("discord.js");
+const Discord = require("discord.js")
 
-module.exports.execute = async(client, message, args, ayar, emoji) => {
-	let uye = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-  let embed = new MessageEmbed().setAuthor(message.member.displayName, message.author.avatarURL({dynamic: true})).setFooter("Kobs  ❤️ Code").setColor(client.randomColor()).setTimestamp();
-  if (!uye) return message.channel.send(embed.setDescription("Ses odana çekilecek üyeyi belirtmelisin!")).then(x => x.delete({timeout: 5000}));
-  if (!message.member.voice.channel || !uye.voice.channel || message.member.voice.channelID == uye.voice.channelID) return message.channel.send(embed.setDescription("Belirtilen üyenin ve kendinin ses kanalında olduğundan emin ol!")).then(x => x.delete({timeout: 5000}));
-  if (message.member.hasPermission("ADMINISTRATOR")) {
-    await uye.voice.setChannel(message.member.voice.channelID);
-    message.react(client.emojiler.onay).catch();
-  } else {
-    const reactionFilter = (reaction, user) => {
-      return ['✅'].includes(reaction.emoji.name) && user.id === uye.id;
+exports.run = async (client, message, args) => {
+    if(!message.member.roles.cache.has("727099612418146314")) return message.channel.send(`**Bu komutu kullanabilmek için\`YetkiliİsmiKoy \` yetkisine sahip olmasınız.**`);
+    if (!message.member.voiceChannel) return message.channel.send("Bir ses kanalında olman gerek")
+    let Gullanici = message.mentions.members.first();
+    if (!Gullanici.voiceChannel) return message.channel.send("Bu kullanıcı herhangi bir ses kanalında değil")
+    if (!Gullanici) return message.channel.send("Kullanıcı belirtmedin")
+    if (message.member.voiceChannel.id === Gullanici.voiceChannel.id) return message.channel.send("Zaten aynı kanaldasınız")
+    const filter = (reaction, user) => {
+        return ['✅', '❌'].includes(reaction.emoji.name) && user.id === Gullanici.id;
     };
-    message.channel.send(`${uye}`, {embed: embed.setAuthor(uye.displayName, uye.user.avatarURL({dynamic: true, size: 2048})).setDescription(`${message.author} seni ses kanalına çekmek için izin istiyor! Onaylıyor musun?`)}).then(async msj => {
-      await msj.react('✅');
-      msj.awaitReactions(reactionFilter, {max: 1, time: 15000, error: ['time']}).then(c => {
-        let cevap = c.first();
-	if (cevap) {
-	  uye.voice.setChannel(message.member.voice.channelID);
-          msj.delete();
-          message.react(client.emojiler.onay).catch();
-	};
-      });
-    });
-  };
-};
+    let kobs = new Discord.MessageEmbed()
+        .setColor("BLUE")
+        .setDescription(`${Gullanici}, ${message.author} seni ${Gullanici.voiceChannel.name} odasına çekmek istiyor. Kabul ediyormusun?`)
+            .setFooter('test') 
+
+    let mesaj = await message.channel.send(kobs)
+    await mesaj.react("✅")
+    await mesaj.react("❌")
+    mesaj.awaitReactions(filter, {
+        max: 1,
+        time: 60000,
+        errors: ['time']
+    }).then(collected => {
+        const reaction = collected.first();
+        if (reaction.emoji.name === '✅') {
+            let kabul = new Discord.MessageEmbed()
+                .setColor("GREEN")
+                .setDescription(`${Gullanici} odaya çekildi`)
+            message.channel.send(kabul)
+           Gullanici.setVoiceChannel(message.member.voiceChannel)
+        } else {
+            let kobs = new Discord.MessageEmbed()
+                .setColor("RED")
+                .setDescription(`${Gullanici} odaya çekilme teklifini reddetti`)
+            message.channel.send()
+        }
+    })
+}
+
 exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  kategori: "çek",
-  permLevel: 3
+    enabled: true,
+    aliases: ['çek'],
+    permLevel: 0
 };
 
 exports.help = {
-  name: "çek",
-  description: "çek",
-  usage: "çek"
+    name: "çek",
+    description: "Etiketlediğiniz kullanıcıyı odaya çeker",
+    usage: ".çek @kullanıcı"
+
 };

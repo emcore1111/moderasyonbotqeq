@@ -30,7 +30,7 @@ exports.run = (client, message, args) => {
         .addField('Kullanıcı Yasaklandı', member)
         .addField('Tarafından atıldı', message.author)
         .addField('Sebebi', reason)
-        .setFooter('Tarihinde Banlandı', client.user.displayAvatarURL())
+        .setFooter('Kullanıcı Banlandı', client.user.displayAvatarURL())
         .setTimestamp()
 
         message.channel.send(banembed);
