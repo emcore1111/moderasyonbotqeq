@@ -268,20 +268,49 @@ console.log(`Bir hata oluştu! ${e}`)
 });
 
 
-
-///HG Mesajı
-client.on('guildMemberAdd', async member => {
-    moment.locale('tr')
-    let tarih = moment(member.user.createdAt.getTime()).format('LLL')
-    let gün = moment.duration(new Date().getTime() - member.user.createdAt.getTime()).format("D")
-    let resim = new Discord.Attachment('https://media.giphy.com/media/12B39IawiNS7QI/giphy.gif')
-    let kişi = member.guild.memberCount
-    let kayıtcırol = member.guild.roles.cache.ind(kayıtcı => kayıtcı.id = "730339415984963686")
-    let kanal = client.channels.cache.get("761477627557969924")
-    kanal.send(`Merhaba <@${member.user.id}> Sunucuya **hoşgeldin!**\n\nSeninle beraber **${kişi}** kişiyiz.\n\nTagımızı alarak bize destek olabilirsin\n\nHesap kuruluş tarihi; **${tarih}** [**${gün}** gün önce]\n\n${kayıtcırol} sizinle ilgilenecektir.`, resim)
+//HG MESAJI
+client.on('guildMemberAdd', (member, msg) => {
+  const moment = require('moment')
+	let günler = {
+      "0": "Pazar",
+      "1": "Pazartesi",
+      "2": "Salı",
+      "3": "Çarşamba",
+      "4": "Perşembe",
+      "5": "Cuma",
+      "6": "Cumartesi",
+	}
+	  let aylar = {
+			"01": "Ocak",
+			"02": "Şubat",
+			"03": "Mart",
+			"04": "Nisan",
+			"05": "Mayıs",
+			"06": "Haziran",
+			"07": "Temmuz",
+			"08": "Ağustos",
+			"09": "Eylül",
+			"10": "Ekim",
+			"11": "Kasım",
+			"12": "Aralık"
+    }
+  let endAt = member.user.createdAt
+      let gün = moment(new Date(endAt).toISOString()).format('DD')
+      let ay = moment(new Date(endAt).toISOString()).format('MM').replace("01", "Ocak").replace("02","Şubat").replace("03","Mart").replace("04", "Nisan").replace("05", "Mayıs").replace("06", "Haziran").replace("07", "Temmuz").replace("08", "Ağustos").replace("09", "Eylül").replace("10","Ekim").replace("11","Kasım").replace("12","Aralık")
+     let yıl =  moment(new Date(endAt).toISOString()).format('YYYY')
+     let saat = moment(new Date(endAt).toISOString()).format('HH:mm')
+let kuruluş = `${gün} ${ay} ${yıl} ${saat}`
+   // let kuruluş = moment(user.author.createdAt).format('YYYY-MM-DD HH:mm:ss')
+	//let kuruluş = user.createdAt.toDateString().replace("Sun","Pazar").replace("Mon","Pazartesi").replace("Tue","Salı").replace("Wed","Çarşamba").replace("Thu","Perşembe").replace("Fri","Cuma").replace("Sat","Cumartesi").replace("Jan","Ocak").replace("Feb","Şubat").replace("Mar","Mart").replace("Apr","Nisan").replace("May","Mayıs").replace("June","Haziran").replace("July","Temmuz").replace("Aug","Ağustos").replace("Sep","Eylül").replace("Oct","Ekim").replace("Nov","Kasım").replace("Dec","Aralık")   
+	let embed = new Discord.MessageEmbed()
+	.setColor("BLACK")
+    .setDescription(`<@${member.id}> Aramıza hoşgeldin seninle birlikte ${member.guild.memberCount} Kişi olduk \n Sunucumuzda kanalları görebilmen için kayıt olman gerekli bunun için yandaki ses odalarına girebilirsin. \n @Rol Adı Rolüne sahip kişiler kayıt işlemlerinle ilgilenecektir. \n Hesap kuruluş tarihi : ${kuruluş} \n #Kurallar kanalını okumayı unutma ! \n Umarız güzel zaman geçirirsin.`)
+  client.channels.cache.get("761477627557969924").send(embed)
 })
 
 /////OTOİSİM
 client.on('guildMemberAdd', member => {
  member.setNickname('İsim Yaş')////YENI GELENLERE VERILCEK ISIM
 })
+
+
