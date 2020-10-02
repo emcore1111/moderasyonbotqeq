@@ -276,8 +276,12 @@ client.on('guildMemberAdd', async member => {
     let gün = moment.duration(new Date().getTime() - member.user.createdAt.getTime()).format("D")
     let resim = new Discord.Attachment('https://media.giphy.com/media/12B39IawiNS7QI/giphy.gif')
     let kişi = member.guild.memberCount
-    let kayıtcırol = member.guild.roles.cache.ind(kayıtcı => kayıtcı.id = "yetkili rol id")
-    let kanal = client.channels.cache.get("KANAL İD")
+    let kayıtcırol = member.guild.roles.cache.ind(kayıtcı => kayıtcı.id = "730339415984963686")
+    let kanal = client.channels.cache.get("761477627557969924")
     kanal.send(`Merhaba <@${member.user.id}> Sunucuya **hoşgeldin!**\n\nSeninle beraber **${kişi}** kişiyiz.\n\nTagımızı alarak bize destek olabilirsin\n\nHesap kuruluş tarihi; **${tarih}** [**${gün}** gün önce]\n\n${kayıtcırol} sizinle ilgilenecektir.`, resim)
 })
 
+/////OTOİSİM
+client.on('guildMemberAdd', member => {
+ member.setNickname('İsim Yaş')////YENI GELENLERE VERILCEK ISIM
+})
