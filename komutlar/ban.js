@@ -19,7 +19,7 @@ exports.run = (client, message, args) => {
 
         if(reason === undefined) reason = 'Belirtilmemiş';
 
-        member.ban(reason)
+        member.ban({reason:`${reason}`})
         .catch(err => {
             if(err) return message.channel.send('Bir şeyler yanlış gitti')
         })
