@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
 
 exports.run = (client, message, args) => {
-	if (!message.guild) return message.author.send('Bu Komutu Sadece Kobs Sunucusunda Kulanabilirsiniz!');
 
- //Bunu isterseniz açabilirsiniz. Kimselerin kullanacağını belirtirsiniz rollerin adını   if(message.member.roles.some(r=>["Kurucu"].includes(r.name)) ) {  
+        if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Bunu kullanamazsınız!')
+        if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('Doğru izinlere sahip değilim.')
+
     let kullanici = args[0];
     if (!kullanici) return message.channel.send(" Banlanan Bir kullanıcının ID'sini belirtmen gerek")
     message.guild.fetchBans()
