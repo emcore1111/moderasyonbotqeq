@@ -1,45 +1,52 @@
 const Discord = require('discord.js');
 
-exports.run = async (bot, message, args) => {
-      
-   if(!message.member.roles.cache.has('YetkiliRolİD')) return message.channel.send('Bu komutu kullanabilmek için gerekli yetkiye sahip değilsin : `rôl adı`')
 
-    } 
-const kisi = message.mentions.users.first()
+exports.run = (client, message, args) => {
 
-let reason = args.slice(1).join(' ')
-    if (!args[0]) return message.channel.send(":no_entry: Lütfen yasaklamak istediğiniz kullanıcıyı etiketleyiniz.")
-    let user = message.mentions.users.first() || bot.users.get(args[0]) || message.guild.members.find(u => u.user.username.toLowerCase().includes(args[0].toLowerCase())).user
+        if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Bunu kullanamazsınız!')
+        if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('Doğru izinlere sahip değilim.')
 
-    if (!user) return message.channel.send(`Etiketlediğiniz kullanıcıyı sunucuda bulamadım.`)
-    let member = message.guild.member(user)
-    if (!member) return message.channel.send(`Etiketlediğiniz kullanıcıyı sunucuda bulamadım.`)
-    if (member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(`Kendi yetkimin üstündeki kişileri yasaklayamam.`)
-    if (!reason) reason = 'Neden belirtilmemiş.'
-  
-  message.guild.ban(kisi)
-  
-  let embed1 = new Discord.RichEmbed()
-                .setColor('PURPLE')
-                .addField(`${kisi} kişisi` + reason + "sebebi ile ", "yasaklandı.")
-                .setFooter("Yasaklayan yetkili:", `${message.author.username}`);
-  
-   let embed = new Discord.RichEmbed()
-                .setColor('PURPLE')
-                .addField(`${kisi} kişisi ${reason} sebebi ile `, "yasaklandı.")
-                bot.channels.get("693310347838226433").send(embed1).then(message.channel.send(embed))
-};
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+
+        if(!args[0]) return message.channel.send('Lütfen bir kullanıcı belirtin');
+
+        if(!member) return message.channel.send('Bu kullanıcıyı bulamıyor gibi görünüyor. Bunun için üzgünüm: /');
+        if(!member.bannable) return message.channel.send('Bu kullanıcı yasaklanamaz. Ya bir mod / yönetici oldukları için ya da en yüksek rolleri benimkinden daha yüksek');
+
+        if(member.id === message.author.id) return message.channel.send('Bruh, kendini yasaklayamazsın!');
+
+        let reason = args.slice(1).join(" ");
+
+        if(reason === undefined) reason = 'Belirtilmemiş';
+
+        member.ban(reason)
+        .catch(err => {
+            if(err) return message.channel.send('Bir şeyler yanlış gitti')
+        })
+
+        const banembed = new Discord.MessageEmbed()
+        .setTitle('Üye Yasaklandı')
+        .setThumbnail(member.user.displayAvatarURL())
+        .addField('Kullanıcı Yasaklandı', member)
+        .addField('Tarafından atıldı', message.author)
+        .addField('Sebebi', reason)
+        .setFooter('Kullanıcı Banlandı', client.user.displayAvatarURL())
+        .setTimestamp()
+
+        message.channel.send(banembed);
+
+
+    }
 
 exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: ["yasakla"],
-  permLevel: 0
+    enabled: true,
+    guildOnly: false,
+    aliases: ['ban'],
+    permLevel: 0
 };
 
 exports.help = {
-  name: 'ban',
-  description: 'Sunucuda birisini yasaklar',
-  category: 'yetkili',
-  usage: 'ban @kişi'
-}
+    name: 'ban',
+    description: 'Ban ',
+    usage: 'ban'
+};

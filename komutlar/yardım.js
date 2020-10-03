@@ -10,7 +10,10 @@ exports.run = async(client, message, args) => {
 Kayıt Sisteminde Kullanılan Komutlar;
 \`kız\`,\`erkek\`,\`nick\`
 `)
-
+ .addField("-eğlence (9)", `
+Yetkili Komutları;
+\`ban\`,\`mute\`,\`sohbet-aç\`,\`sohbet-kapat\`,\`kediol\`,\`aşk\`,\`token\`,\`tokat\`
+`)
  
  message.channel.send(yardım)
 }
