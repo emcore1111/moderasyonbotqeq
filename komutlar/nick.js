@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db');
 exports.run = async (client, message, args) => {
   
- if(!message.member.roles.has('YetkiliRolİD')) return message.channel.send('**Bu komutu kullanabilmek için \`Yetkiliİsim\` yetkisine sahip olmasınız.**')
+if (!message.member.roles.cache.has("YetkiliRolİd")) return message.reply("Bunu Kullanmak İçin Belirtilen Role Sahip Olman Gerekli")
 
   let member = message.mentions.members.first();
   let isim = args[1]
