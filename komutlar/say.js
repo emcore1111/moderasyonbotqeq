@@ -1,7 +1,21 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
-    const voiceChannels = message.guild.channels.cache.filter(c => c.type === 'voice');
+var tagdakiler = 0;
+  let tag = "TagınıBurayaKoy";
+  message.guild.members.forEach(member => {
+    if(member.user.username.includes(tag)) {
+      tagdakiler = tagdakiler+1
+    }
+  })
+  
+  
+let erkek = message.guild.roles.get("erkekrolid").members
+let kız = message.guild.roles.get("kadınrolid").members
+let kayıtsız = message.guild.roles.get("kayıtsızrolid").members
+
+    
+const voiceChannels = message.guild.channels.cache.filter(c => c.type === 'voice');
     let count = 0
      let botlar = message.guild.members.cache.filter(m => m.user.bot).size;
     let textChannels = message.guild.channels.cache.filter(m => m.type == "text").size;
@@ -15,8 +29,6 @@ exports.run = async (client, message, args) => {
         .addField(`**Seslideki Üye Sayısı**`,`**\`\`\`${count}\`\`\`**`)
         .addField(`  **Yazı Kanalları**`, `» **${textChannels}**`)
         .addField(`  **Ses Kanalları**`, `» **${voiceChannels.size}**`)
-        .addField(` **Roller**`,`»  **${message.guild.roles.size}**`)
-        .addField(`**Emojiler**`,`»  **${message.guild.emojis.size}**`)
         .addField(` **Kullanıcılar**`, ` Çevrimiçi : **${message.guild.members.cache.filter(o => o.presence.status === 'online').size}** \n Rahatsız Etmeyin : **${message.guild.members.cache.filter(dnd => dnd.presence.status === 'dnd').size}** \n Boşta: **${message.guild.members.cache.filter(i => i.presence.status === 'idle').size}** \n Görünmez/Çevrimdışı : **${message.guild.members.cache.filter(off => off.presence.status === 'offline').size}** \n  Botlar : **${botlar}**`, true)
         .setTitle(`${message.author.tag} - Tarafından Kullanıldı`)
         .setFooter(`istediğinizi yazın`, client.user.avatarURL())
