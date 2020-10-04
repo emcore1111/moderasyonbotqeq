@@ -4,15 +4,15 @@ exports.run = async (client ,message, args) =>{
 
 
 let tag = message.guild.members.cache.filter().then(u => { 
-u.username.includes("tag").size || 0 
+u.username.includes("Kobs").size || 0 
 
 })
 let bayan = message.guild.members.cache.filter().then(u => { 
-u.roles.cache.has("rol id").size || 0
+u.roles.cache.has("762306052699324446").size || 0
 
 })
 let erkek = message.guild.members.cache.filter().then(u => { 
-u.roles.cache.has("rol id").size || 0
+u.roles.cache.has("762306051999531068").size || 0
 
 })
  
