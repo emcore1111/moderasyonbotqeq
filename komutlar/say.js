@@ -1,18 +1,6 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
-var tagdakiler = 0;
-  let tag = "Kobs";
-message.guild.members.cache.forEach(member => {
-    if(member.user.username.includes(tag)) {
-      tagdakiler = tagdakiler+1
-    }
-  })
-  
-  
-let erkek = message.guild.members.cache.filter("762306051999531068").members
-let kız = message.guild.members.cache.filter("762306052699324446").members
-let kayıtsız = message.guild.members.cache.filter("762306275916644372").members
 
     
 const voiceChannels = message.guild.channels.cache.filter(c => c.type === 'voice');
@@ -27,10 +15,7 @@ const voiceChannels = message.guild.channels.cache.filter(c => c.type === 'voice
         .addField(` **Sunucudaki Toplam Üye Sayısı**`,`**\`\`\`${message.guild.memberCount}\`\`\`**`)
         .addField(` **Toplam Çevrimiçi Üye Sayısı**`, `**\`\`\`${çevrimiçi}\`\`\`**`) 
         .addField(`**Seslideki Üye Sayısı**`,`**\`\`\`${count}\`\`\`**`)
-        .addField(`  **Yazı Kanalları**`, `» **${textChannels}**`)
-        .addField(`  **Ses Kanalları**`, `» **${voiceChannels.size}**`)
         .addField(` **Kullanıcılar**`, ` Çevrimiçi : **${message.guild.members.cache.filter(o => o.presence.status === 'online').size}** \n Rahatsız Etmeyin : **${message.guild.members.cache.filter(dnd => dnd.presence.status === 'dnd').size}** \n Boşta: **${message.guild.members.cache.filter(i => i.presence.status === 'idle').size}** \n Görünmez/Çevrimdışı : **${message.guild.members.cache.filter(off => off.presence.status === 'offline').size}** \n  Botlar : **${botlar}**`, true)
-        .addField(`Kayıtsız Üye Sayısı:** **${kayıtsız.size}** \n \n **Erkek Üye:** **${erkek.size}** \n\n**Kadın Üye: ${kız.size}** \n\n**Tagdakı Uye Sayısı: ${tagdakiler} **`)
         .setTitle(`${message.author.tag} - Tarafından Kullanıldı`)
         .setFooter(`istediğinizi yazın`, client.user.avatarURL())
     message.channel.send(kobs);
