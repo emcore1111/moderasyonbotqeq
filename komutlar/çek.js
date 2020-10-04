@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 exports.run = async (client, message, args) => {
-    if(!message.member.roles.cache.has("727099612418146314")) return message.channel.send(`**Bu komutu kullanabilmek için\`YetkiliİsmiKoy \` yetkisine sahip olmasınız.**`);
+    if(!message.member.roles.cache.has("YetkiliRolİD")) return message.channel.send(`**Bu komutu kullanabilmek için \`YetkiliİsimiKoy\` yetkisine sahip olmasınız.**`);
     if (!message.member.voiceChannel) return message.channel.send("Bir ses kanalında olman gerek")
     let kullanici = message.mentions.members.first();
     if (!kullanici.voiceChannel) return message.channel.send("Bu kullanıcı herhangi bir ses kanalında değil")
@@ -12,12 +12,14 @@ exports.run = async (client, message, args) => {
     };
     let kobs = new Discord.MessageEmbed()
         .setColor("BLUE")
-        .setDescription(`${kullanici}, ${message.author} seni ${kullanici.voiceChannel.name} odasına çekmek istiyor. Kabul ediyormusun?`)
-            .setFooter('test') 
+        .setDescription(`${kullanici}, ${message.author}  ${kullanici.voiceChannel.name} Yanına Gelmek İstiyor,Kabul Ediyormusun?`)
+            .setFooter('kobs') 
+ message.channel.send(kobs).then(a => {
+    a.react("❌")
+    a.react("✅")
+ })
 
-    let mesaj = await message.channel.send(kobs)
-    await mesaj.react("✅")
-    await mesaj.react("❌")
+  
     mesaj.awaitReactions(filter, {
         max: 1,
         time: 60000,
@@ -25,29 +27,30 @@ exports.run = async (client, message, args) => {
     }).then(collected => {
         const reaction = collected.first();
         if (reaction.emoji.name === '✅') {
-            let kabul = new Discord.MessageEmbed()
+            let sama = new Discord.MessageEmbed()
                 .setColor("GREEN")
                 .setDescription(`${kullanici} odaya çekildi`)
-            message.channel.send(kabul)
-           kullanici.setVoiceChannel(message.member.voiceChannel)
+            message.channel.send(sama).then(msg => msg.delete({timeout:2000}));
+           message.member.setVoiceChannel(kullanici.voiceChannel)
         } else {
             let kobs = new Discord.MessageEmbed()
                 .setColor("RED")
                 .setDescription(`${kullanici} odaya çekilme teklifini reddetti`)
-            message.channel.send()
+            message.channel.send(kobs).then(msg => msg.delete({timeout:2000}));
         }
     })
+  
 }
 
 exports.conf = {
     enabled: true,
-    aliases: ['çek'],
+    aliases: ['git'],
     permLevel: 0
 };
 
 exports.help = {
-    name: "çek",
+    name: "git",
     description: "Etiketlediğiniz kullanıcıyı odaya çeker",
-    usage: ".çek @kullanıcı"
+    usage: "git @kullanıcı"
 
 };
