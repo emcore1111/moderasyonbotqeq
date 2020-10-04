@@ -27,7 +27,7 @@ exports.run = async(client, message, args) => {
    kayıt.roles.add(kız)
    kayıt.roles.remove(kayıtsız)
    let embed = new Discord.MessageEmbed()
-   .setColor('RED')
+   .setColor('Blue')
    .setTitle('Kayıt Tamamlandı')
    .addField('Kayıt edilen kullanıcı',member)
    .addField('Adı :', isim)
