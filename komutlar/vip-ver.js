@@ -22,7 +22,8 @@ exports.run = async(client, message, args) => {
    .setTitle('Vip Üye Verildi')
    .addField('Vip Üye Yapılan Kullanıcı',member)
    .addField('Komutu Kullanan Yetkili', message.author)
-   client.channels.cache.get('762383808656965662').send(embed)///LOG KANAL İD YAZMALISIN
+    .setImage('https://media.giphy.com/media/kmFNdsZfgMo7e/giphy.gif')   
+ client.channels.cache.get('762383808656965662').send(embed)///LOG KANAL İD YAZMALISIN
 }
 
 exports.conf = {
