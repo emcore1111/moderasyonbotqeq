@@ -308,6 +308,9 @@ let kuruluş = `${gün} ${ay} ${yıl} ${saat}`
   client.channels.cache.get("LogKanalİd").send(embed)
 })
 
+
+
+
 /////OTOİSİM
 client.on('guildMemberAdd', member => {  
  member.setNickname('İsim Yaş')////YENI GELENLERE VERILCEK ISIM
