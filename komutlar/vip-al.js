@@ -7,22 +7,22 @@ exports.run = async(client, message, args) => {
    if(!member) {
        return message.channel.send('Bir kişi etiketlemelisin')
    }
-   let vip = message.guild.roles.cache.find(r => r.id === '762306051999531068')
+   let vip = message.guild.roles.cache.find(r => r.id === '762382555579678741')
 
    if(!vip) {
-       return message.channel.send('Erkek rolü ayarlanmamış veya rol aranırken bir hata oluştu logu kontrol et')
+       return message.channel.send('Vip rolü ayarlanmamış veya rol aranırken bir hata oluştu logu kontrol et')
    }
 
-   let kayıt = message.guild.member(member)
+   let vipyap = message.guild.member(member)
 
 
-   kayıt.roles.add(vip)
+   vipyap.roles.remove(vip)
    let embed = new Discord.MessageEmbed()
    .setColor('Yellow')
-   .setTitle('Kayıt Tamamlandı')
-   .addField('Vip Yapılan Kullanıcı',member)
-   .addField('Vip Veren yetkili', message.author)
-   client.channels.cache.get('762314428045328385').send(embed)
+   .setTitle('Vip Üye Geri Alındı')
+   .addField('Vip Üyesi Alınan Kullanıcı',member)
+   .addField('Komutu Kullanan Yetkili', message.author)
+   client.channels.cache.get('762383808656965662').send(embed)///LOG KANAL İD YAZMALISIN
 }
 
 exports.conf = {

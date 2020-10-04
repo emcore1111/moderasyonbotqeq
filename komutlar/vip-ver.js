@@ -7,44 +7,33 @@ exports.run = async(client, message, args) => {
    if(!member) {
        return message.channel.send('Bir kişi etiketlemelisin')
    }
-   let kız = message.guild.roles.cache.find(r => r.id === '762306051999531068')
-   let kayıtsız = message.guild.roles.cache.find(r => r.id === '762306275916644372')
+   let vip = message.guild.roles.cache.find(r => r.id === '762382555579678741')
 
-   if(!kız) {
-       return message.channel.send('Erkek rolü ayarlanmamış veya rol aranırken bir hata oluştu logu kontrol et')
+   if(!vip) {
+       return message.channel.send('Vip rolü ayarlanmamış veya rol aranırken bir hata oluştu logu kontrol et')
    }
-   if(!kayıtsız) {
-       return message.channel.send('kayıtsız rolü ayarlanmamış veya rol aranırken bir hata oluştu logu kontrol et')
-   }
-   let kayıt = message.guild.member(member)
-   let isim = args[1]
-   let yas = args[2]
 
-   if(!isim) return message.channel.send('İsim belirtmelisin')
-   if(isNaN(yas)) return message.channel.send('Yaş belirtmelisin')
+   let vipal = message.guild.member(member)
 
-   kayıt.setNickname(`${isim} | ${yas}`)
-   kayıt.roles.add(kız)
-   kayıt.roles.remove(kayıtsız)
+
+   vipal.roles.add(vip)
    let embed = new Discord.MessageEmbed()
-   .setColor('Blue')
-   .setTitle('Kayıt Tamamlandı')
-   .addField('Kayıt edilen kullanıcı',member)
-   .addField('Adı :', isim)
-   .addField('Yaşı :', yas)
-   .addField('Kayıt eden yetkili', message.author)
-   client.channels.cache.get('762314428045328385').send(embed)
+   .setColor('Yellow')
+   .setTitle('Vip Üye Verildi')
+   .addField('Vip Üye Yapılan Kullanıcı',member)
+   .addField('Komutu Kullanan Yetkili', message.author)
+   client.channels.cache.get('762383808656965662').send(embed)///LOG KANAL İD YAZMALISIN
 }
 
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['erkek','e','bay'],
+    aliases: ['vipver','vip-ver'],
     permLevel: 0
 };
 
 exports.help = {
-    name: 'erkek',
-    description: 'erkek ',
-    usage: 'erkek'
+    name: 'vip-ver',
+    description: 'vip-ver',
+    usage: 'vip-ver'
 };

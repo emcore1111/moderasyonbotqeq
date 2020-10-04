@@ -36,8 +36,7 @@ message.delete()
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
-  kategori: "temizle",
+ aliases: ['temizle','sil'],
   permLevel: 3
 };
 
