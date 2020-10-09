@@ -1,64 +1,54 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
+const Discord = require("discord.js")
 
-exports.run = async(client, message, args) => {
-   if(!message.member.roles.cache.has('762306051336437800')) return message.channel.send('Bu komutu kullanabilmek için gerekli yetkiye sahip değilsin : `rôl adı`')
+exports.run = async (client, message, args) => {
+    if(!message.member.roles.has("727099612418146314")) return message.channel.send(`**Bu komutu kullanabilmek için \`YetkiliİsimiKoy\` yetkisine sahip olmasınız.**`);
+    if (!message.member.voiceChannel) return message.channel.send("Bir ses kanalında olman gerek")
+    let kullanici = message.mentions.members.first();
+    if (!kullanici.voiceChannel) return message.channel.send("Bu kullanıcı herhangi bir ses kanalında değil")
+    if (!kullanici) return message.channel.send("Kullanıcı belirtmedin")
+    if (message.member.voiceChannel.id === kullanici.voiceChannel.id) return message.channel.send("Zaten aynı kanaldasınız")
+    const filter = (reaction, user) => {
+        return ['✅', '❌'].includes(reaction.emoji.name) && user.id === kullanici.id;
+    };
+    let kobs = new Discord.RichEmbed()
+        .setColor("BLUE")
+        .setDescription(`${kullanici}, ${message.author}  ${kullanici.voiceChannel.name} Yanına Gelmek İstiyor,Kabul Ediyormusun?`)
+            .setFooter('kobs') 
 
-  ///OLMSSA SYLE BISEYLER DAHA YAPICAM "!" GİBİ
-  
-  if(!message.member.voiceChannel) return message.channel.send("Sese Gir.")
-  
-  let member = message.mentions.members.first()
-  
-  if(!member) return message.channel.send("Bir Üye Etiketle.")
-  
-  if(!member.voiceChannel) return message.channel.send("Etiketlenen Üye Sesde Yok.")
-  
-  if(member.voiceChannel.id = message.member.voiceChannel.id) return message.channel.send("Zaten Aynı Kanaldasınız.")
-  
- let rochelle = new Discord.MessageEmbed()
-    .setColor("RANDOM")
-    .setDescription(
-      `${member} , ${message.author} Senin Yanına Gelmek İstiyor Kabul Ediyormusun.?`
-    );
-  message.channel.send(rochelle).then(async (m) => {
-    await m.react("✅").then((r) => {
-      const tamam = (reaction, user) =>
-        reaction.emoji.name == "✅" && user.id == message.author.id;
-      const tamam2 = m.createReactionCollector(tamam);
-
-      tamam2.on("collect", async (r) => {
-        let embed = new Discord.MessageEmbed()
-          .setColor("0x36393E")
-          .setTitle(" Başarılı")
-          .setDescription(`✅ **|** Başarıyla Odaya Gittin MORUQ.`);
-        message.channel.send(embed);
-        await member.setVoiceChannel(message.member.voiceChannel);
-      });
-    });
-    m.react("❌").then((r) => {
-      const tamam = (reaction, user) =>
-        reaction.emoji.name == "❌" && user.id == message.author.id;
-      const tamam2 = m.createReactionCollector(tamam);
-
-      tamam2.on("collect", async (r) => {
-        m.delete();
-        message.channel.send("Gitme İşlemi İptal Edildi.");
-      });
-    });
-  });
+    let mesaj = await message.channel.send(kobs)
+    await mesaj.react("✅")
+    await mesaj.react("❌")
+    mesaj.awaitReactions(filter, {
+        max: 1,
+        time: 60000,
+        errors: ['time']
+    }).then(collected => {
+        const reaction = collected.first();
+        if (reaction.emoji.name === '✅') {
+            let sama = new Discord.RichEmbed()
+                .setColor("GREEN")
+                .setDescription(`${kullanici} odaya çekildi`)
+            message.channel.send(sama).then(msg => msg.delete(5000));
+           message.member.setVoiceChannel(kullanici.voiceChannel)
+        } else {
+            let kobs = new Discord.RichEmbed()
+                .setColor("RED")
+                .setDescription(`${kullanici} odaya çekilme teklifini reddetti`)
+            message.channel.send(kobs).then(msg => msg.delete(5000));
+        }
+    })
   
 }
 
 exports.conf = {
     enabled: true,
-    guildOnly: false,
-    aliases: [],
+    aliases: ['git'],
     permLevel: 0
 };
 
 exports.help = {
-    name: 'git',
-    description: 'erkek ',
-    usage: 'erkek'
+    name: "git",
+    description: "Etiketlediğiniz kullanıcıyı odaya çeker",
+    usage: "git @kullanıcı"
+
 };
