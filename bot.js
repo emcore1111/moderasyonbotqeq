@@ -244,10 +244,10 @@ client.on("message", async (msg, member, guild) => {
 //TAG ALANA ROL
 client.on("userUpdate", async (oldUser, newUser) => {
   if (oldUser.username !== newUser.username) {
-  const tag = 'Kobs'
-  const sunucu = '727098900481048637'
-  const kanal = '762314810188496896'
-  const rol = '762306119023722517'
+  const tag = 'Kobs'//Tagınızı Koyun
+  const sunucu = '727098900481048637'//Sunucu İD
+  const kanal = '762314810188496896'//Log Kanal İD
+  const rol = '762306119023722517'//Rol İd
 
   try {
 
@@ -306,7 +306,7 @@ let kuruluş = `${gün} ${ay} ${yıl} ${saat}`
 	.setColor("BLACK")
     .setDescription(`<a:hype:762250758426460221>** <@${member.id}> Aramıza Hoşgeldin Seninle Birlikte** \`${member.guild.memberCount}\` **Üyeye Ulaştık** \n<a:754752792882577419:762306810488946688> **Sunucumuzda Kanalları Görebilmen İçin Kayıt Olman Gerekli Bunun İçin İse Yanda Bulunan Ses Kanallarına Girerek Kayıt Olabilirsin**\n<:756946485417082989:762306893502611467>  **<@&762306051336437800> Adı Rolüne Sahip Kişiler Kayıt İşlemlerinle İlgilenecektir**\n <a:698556804782620721:762250767536750593> **Hesap Kuruluş Tarihi :** \`${kuruluş}\``)
 .setImage("https://cdn.discordapp.com/attachments/756969726034313406/762304211446005770/giphy.gif")  
-client.channels.cache.get("762313900262817792").send(oskobs)
+client.channels.cache.get("762313900262817792").send(oskobs)//kanalid
 })
 
 
