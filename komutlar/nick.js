@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db');
 exports.run = async (client, message, args) => {
   
- if(!message.member.roles.cache.has('762306051336437800')) return message.channel.send('**Bu komutu kullanabilmek için \`Kayıt Sorumlusu\` yetkisine sahip olmasınız.**')
+ if(!message.member.roles.cache.has('YetkiliROlİd')) return message.channel.send('**Bu komutu kullanabilmek için \`Yetkili\` yetkisine sahip olmasınız.**')
 
   let member = message.mentions.members.first();
   let isim = args[1]
