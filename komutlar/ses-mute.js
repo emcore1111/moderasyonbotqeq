@@ -3,7 +3,7 @@ const ms = require("ms");
 const ayarlar = require("../ayarlar.json");
 const prefix = ayarlar.prefix;
 
-var mutelirolu = "Muted"; 
+var mutelirolu = "VoiceMuted"; 
 
 module.exports.run = async (bot, message, args) => {
   if (!message.member.hasPermission("KICK_MEMBERS"))
@@ -13,11 +13,11 @@ module.exports.run = async (bot, message, args) => {
   );
   if (!mutekisi)
     return message.reply(
-      `:warning: Lütfen bir kullanıcı etiketleyiniz! \nDoğru Kullanım; **${prefix}mute <@kullanıcı> <1sn/1dk/1sa/1g>**`
+      `:warning: Lütfen bir kullanıcı etiketleyiniz! \nDoğru Kullanım; **${prefix}ses-mute <@kullanıcı> <1sn/1dk/1sa/1g>**`
     );
   if (mutekisi.hasPermission("MANAGE_MESSAGES"))
     return message.reply(
-      `:warning: Yetkili bir kişiyi muteleyemem! \nDoğru Kullanım; \`${prefix}mute <@kullanıcı> <1sn/1dk/1sa/1g>\``
+      `:warning: Yetkili bir kişiyi muteleyemem! \nDoğru Kullanım; \`${prefix}ses-mute <@kullanıcı> <1sn/1dk/1sa/1g>\``
     );
 //OGÜNABİ BUNDAN SONRASINI SEN YAP BEN KARIŞTIRDIM
 //Tamam Bende Paşa Hallederim Bunu
@@ -54,7 +54,7 @@ module.exports.run = async (bot, message, args) => {
     new Discord.MessageEmbed()
     .setThumbnail(message.author.avatarURL())
     .setColor(0x00ae86)
-    .setAuthor("İşlem : Mute")
+    .setAuthor("İşlem : Ses Mute")
     .setTimestamp()
     .addField("**Kullanıcı:**", `<@${mutekisi.id}>`)
     .addField("**Moderatör:**", message.author)
@@ -72,12 +72,12 @@ module.exports.run = async (bot, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ["tempmute"],
+  aliases: ["ses-mute","sesmute","vmute"],
   permLevel: 0
 };
 
 exports.help = {
-  name: "mute",
+  name: "ses-mute",
   description: "Etiketlediğiniz kişiye belirttiğiniz süre kadar mute atar.",
-  usage: "mute <@kullanıcı> <1sn/1dk/1sa/1g>"
+  usage: "ses-mute <@kullanıcı> <1sn/1dk/1sa/1g>"
 };

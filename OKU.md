@@ -10,4 +10,4 @@
 
 - Discord Adresımız : [TIKLA](https://discord.gg/kobs)
 
-- Hazırlayan :  ``OgünSert Kob's#0001``
+- Hazırlayan :  ``Kobs#0001``

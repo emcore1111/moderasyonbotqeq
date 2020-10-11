@@ -323,11 +323,11 @@ client.on("guildMemberAdd", async member => {
       const ktarih = new Date().getTime() - gkisi.createdAt.getTime();   
 
     if (ktarih < 2592000001) {
-    member.roles.add("Şüpheli hesap")
+    member.roles.add("761483832809488394")//Şüpheli Hesap
     
     }else{
     
-    member.roles.add("Güvenilir Hesap")
+    member.roles.add("762306275916644372")//Güvenilir Hesağ
     
       }
 });
