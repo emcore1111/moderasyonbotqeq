@@ -33,7 +33,7 @@ exports.run = async(client, message, args) => {
    .addField('Adı :', isim)
    .addField('Yaşı :', yas)
    .addField('Kayıt eden yetkili', message.author)
-   client.channels.cache.get('762314428045328385').send(embed)///LOG KANAL İD YAZMALISIN
+   client.channels.cache.get('LOG KANAL İD YAZMALISIN').send(embed)///LOG KANAL İD YAZMALISIN
 }
 
 exports.conf = {
