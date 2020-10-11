@@ -2,15 +2,15 @@ const Discord = require('discord.js');
 const db = require('quick.db');
 
 exports.run = async(client, message, args) => {
-   if(!message.member.roles.cache.has('762306051336437800')) return message.channel.send('Bu komutu kullanabilmek için gerekli yetkiye sahip değilsin : `rôl adı`')
+   if(!message.member.roles.cache.has('Yetkilirolid')) return message.channel.send('Bu komutu kullanabilmek için gerekli yetkiye sahip değilsin : `rôl adı`')
    let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
    if(!member) {
        return message.channel.send('Bir kişi etiketlemelisin')
    }
-   let kız = message.guild.roles.cache.find(r => r.id === '762306051999531068')
-   let kayıtsız = message.guild.roles.cache.find(r => r.id === '762306275916644372')
+   let erkek = message.guild.roles.cache.find(r => r.id === 'ErkekRolİd')
+   let kayıtsız = message.guild.roles.cache.find(r => r.id === 'KayıtsızRolİd')
 
-   if(!kız) {
+   if(!erkek) {
        return message.channel.send('Erkek rolü ayarlanmamış veya rol aranırken bir hata oluştu logu kontrol et')
    }
    if(!kayıtsız) {
@@ -24,7 +24,7 @@ exports.run = async(client, message, args) => {
    if(isNaN(yas)) return message.channel.send('Yaş belirtmelisin')
 
    kayıt.setNickname(`${isim} • ${yas}`)
-   kayıt.roles.add(kız)
+   kayıt.roles.add(erkek)
    kayıt.roles.remove(kayıtsız)
    let embed = new Discord.MessageEmbed()
    .setColor('Blue')

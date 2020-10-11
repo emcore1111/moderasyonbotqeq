@@ -245,9 +245,9 @@ client.on("message", async (msg, member, guild) => {
 client.on("userUpdate", async (oldUser, newUser) => {
   if (oldUser.username !== newUser.username) {
   const tag = 'Kobs'//Tagınızı Koyun
-  const sunucu = '727098900481048637'//Sunucu İD
-  const kanal = '762314810188496896'//Log Kanal İD
-  const rol = '762306119023722517'//Rol İd
+  const sunucu = 'Sunucuİd'//Sunucu İD
+  const kanal = 'Logkanalid'//Log Kanal İD
+  const rol = 'TagAlanaVerilecekRolİd'//Rol İd
 
   try {
 
@@ -304,9 +304,9 @@ let kuruluş = `${gün} ${ay} ${yıl} ${saat}`
 	//let kuruluş = user.createdAt.toDateString().replace("Sun","Pazar").replace("Mon","Pazartesi").replace("Tue","Salı").replace("Wed","Çarşamba").replace("Thu","Perşembe").replace("Fri","Cuma").replace("Sat","Cumartesi").replace("Jan","Ocak").replace("Feb","Şubat").replace("Mar","Mart").replace("Apr","Nisan").replace("May","Mayıs").replace("June","Haziran").replace("July","Temmuz").replace("Aug","Ağustos").replace("Sep","Eylül").replace("Oct","Ekim").replace("Nov","Kasım").replace("Dec","Aralık")   
 	let oskobs = new Discord.MessageEmbed()
 	.setColor("BLACK")
-    .setDescription(`<a:hype:762250758426460221>** <@${member.id}> Aramıza Hoşgeldin Seninle Birlikte** \`${member.guild.memberCount}\` **Üyeye Ulaştık** \n<a:754752792882577419:762306810488946688> **Sunucumuzda Kanalları Görebilmen İçin Kayıt Olman Gerekli Bunun İçin İse Yanda Bulunan Ses Kanallarına Girerek Kayıt Olabilirsin**\n<:756946485417082989:762306893502611467>  **<@&762306051336437800> Adı Rolüne Sahip Kişiler Kayıt İşlemlerinle İlgilenecektir**\n <a:698556804782620721:762250767536750593> **Hesap Kuruluş Tarihi :** \`${kuruluş}\``)
+    .setDescription(`<a:emojiisim:emojiid>** <@${member.id}> Aramıza Hoşgeldin Seninle Birlikte** \`${member.guild.memberCount}\` **Üyeye Ulaştık** \n<a:emojiisim:emojiid>**Sunucumuzda Kanalları Görebilmen İçin Kayıt Olman Gerekli Bunun İçin İse Yanda Bulunan Ses Kanallarına Girerek Kayıt Olabilirsin**\n<a:emojiisim:emojiid>  **<@&yetkilirolid> Adı Rolüne Sahip Kişiler Kayıt İşlemlerinle İlgilenecektir**\n <a:emojiisim:emojiid> **Hesap Kuruluş Tarihi :** \`${kuruluş}\``)
 .setImage("https://cdn.discordapp.com/attachments/756969726034313406/762304211446005770/giphy.gif")  
-client.channels.cache.get("762313900262817792").send(oskobs)//kanalid
+client.channels.cache.get("kanalid").send(oskobs)//kanalid
 })
 
 
@@ -323,11 +323,11 @@ client.on("guildMemberAdd", async member => {
       const ktarih = new Date().getTime() - gkisi.createdAt.getTime();   
 
     if (ktarih < 2592000001) {
-    member.roles.add("761483832809488394")//Şüpheli Hesap
+    member.roles.add("Rolid")//Şüpheli Hesap
     
     }else{
     
-    member.roles.add("761483832809488394")//Güvenilir Hesağ
+    member.roles.add("Rolid")//Güvenilir Hesağ
     
       }
 });
