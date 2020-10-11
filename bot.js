@@ -244,7 +244,7 @@ client.on("message", async (msg, member, guild) => {
 //TAG ALANA ROL
 client.on("userUpdate", async (oldUser, newUser) => {
   if (oldUser.username !== newUser.username) {
-  const tag = '!'
+  const tag = 'Kobs'
   const sunucu = '727098900481048637'
   const kanal = '762314810188496896'
   const rol = '762306119023722517'
