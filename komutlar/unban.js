@@ -1,51 +1,44 @@
-const codare = require('discord.js')
-exports.run = async(message, args) => {
+const Discord = require('discord.js');
+const fs = require('fs');
 
-if(!message.member.permissions.has("BAN_MEMBERS")) return message.channel.send(`Bu komutu kullanabilmek için "Kullanıcıları Yasakla" Yetkisine Sahip Olmalısın!`)
+exports.run = async (client, message, args) => {
 
+  const db = require('quick.db');
+  
+  const kobs = require("../ayarlar/bot.json");
+let prefix = await db.fetch(`prefix.${message.guild.id}`) || kobs.prefix;
+    
+  if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send(`<a:hypesquad1:750076071721828452>  **Bu komutu kullanabilmek için "\`Üyeleri Yasakla\`" yetkisine sahip olmalısın.**`);
+  
 
-let tanersins = args[0]
-if(!tanersins) {
-  message.channel.send(new codare.MessageEmbed())
-.setTitle("Hatalı!")
-.setDescription(`Lütfen yasağı kaldırılacak kişinin kullanıcı ID’sini giriniz`)
-.setFooter(`${message.author.tag} Tarafından istendi!`)
-.setColor("RED")
-if (isNaN(tanersins)) {
-  message.channel.send(new codare.MessageEmbed())
-.setTitle("Hatalı!")
-.setDescription(`Lütfen doğru bir ID Giriniz!`)
-.setColor("RED")
-.setFooter(`${message.author.tag} Tarafından istendi!`)
+  let user = args[0];
+  let reason = args.slice(1).join(' ');
+  if (db.has(`log_${message.guild.id}`) === false) return message.channel.send(`<a:setting:750076062716788807> **Mod Log Kanalı Ayarlanmamış | ${prefix}modlog #kanal**`);
+  let modlog = message.guild.channels.cache.get(db.fetch(`log_${message.guild.id}`).replace("<#", "").replace(">", ""));
+ if (isNaN(user)) return message.channel.send('**Lütfen Banını Açmak İstediğiniz Üyeninin ID sini Girin**');
+  if (reason.length < 1) return message.channel.send('**Lütfen Sebep Giriniz**');
+ 
+  
+  const embed = new Discord.MessageEmbed()
+  .setColor("#ffd100")
+  .addField('İşlem', 'Ban Kaldırma')
+  .addField('Banı Açılan Üye', `(${user})`)
+  .addField('Banı Açan Yetkili', `${message.author.username}#${message.author.discriminator}`)
+  .addField('Banı Açma Sebebi', "```" + reason + "```")
+  modlog.send(embed);
+  message.guild.members.unban(user);
+  
 
-const embeed = await message.guild.fetchBans();
-message.guild.members.unban(tanersins)  
-if (!tanersins.id === embeed) {
-  message.channel.send(new codare.MessageEmbed())
-.setTitle("Hatalı!")
-.setDescription(`Bu kişi zaten yasaklanmış!`)
-.setColor("RED")
-.setFooter(`${message.author.tag} Tarafından istendi!`)
+  
+  const embed2 = new Discord.MessageEmbed()
+  .setColor("#ffd100")
+  .setDescription(`Belirtiğiniz İD'nin Banı Açıldı`)
+  message.channel.send(embed2)
 
-  message.channel.send(new codare.MessageEmbed())
-.setTitle("Başarılı!")
-.setDescription(`<@!${tanersins}> Adlı kullanıcının yasağı başarı bir şekilde kaldırıldı!`)
-.setColor("GREEN")
-.setFooter(`${message.author.tag} Tarafından istendi!`)
-}
-}
-}
+  
+};
 
-}
-//codare
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  permLevel: 0
-}
-exports.help = {
+exports.config = {
   name: 'unban',
-  description: 'Herhangi bir kullanıcının IDsini belirterek yasapı kaldırabilirsiniz',
-  usage: 'unban <id>'
-}
+  aliases: ['unban','yasak-kaldır','yasak-aç','ban-kaldır']
+};
