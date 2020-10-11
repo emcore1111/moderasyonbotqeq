@@ -9,12 +9,18 @@ const yardım = new Discord.MessageEmbed()
 .setColor('RANDOM')
 .setTitle(`${client.user.username} - Komutlarım`)
 .setDescription(`
+**\`Genel\`**
+
+» \`${prefix}avatar\`: **Avatarınızı Atar**
+» \`${prefix}say\`: **Üye Durum Grafiğini Gösterir**
+» \`${prefix}kullanıcı-bilgi\`: **Etiketlediğin & Kendi Profilin Hakkında Bilgi Verir**
+
 **\`Kayıt\`**
 
 » \`${prefix}erkek/kız <isim> <yas>\`: **Belirtilen Kullanıcıyı Kayıt Edersiniz**
 » \`${prefix}nick <isim> <yas>\`: **Belirtilen Kullanıcının İsmini Değiştirirsiniz**
 » \`${prefix}vip al/ver\`: **Kullanıcıya Vip Al/Ver**
-» \`${prefix}kullanıcı-bilgi\`: **Etiketlediğin / kendi profilin hakkında bilgi verir. Vip Al/Ver**
+
 
 **\`Yetkili\`**
 
@@ -23,9 +29,8 @@ const yardım = new Discord.MessageEmbed()
 » \`${prefix}mute <kullanıcı> <süre> <sebep>\`: **Kullanıcıyı Belirtilen Süre Boyunca Susturur**
 » \`${prefix}unban <id>\`: **Belirtilen İD Deki Kişinin Sunucudan Yasağını Kaldırır**
 » \`${prefix}temizle/sil <0-100>\`: **Belirtilen Miktarda Mesajı Siler**
-
-
-`)
+» \`${prefix}sohbet-aç/kapat\`: **Sohbet Aç/Kapat**
+» \`${prefix}ban-say\`: **Sunucudakı Banlanan Üye Sayısını Gösterir**`)
 
 .setThumbnail(message.author.avatarURL({dynamic: true}))
 .setTimestamp()
