@@ -327,7 +327,7 @@ client.on("guildMemberAdd", async member => {
     
     }else{
     
-    member.roles.add("762306275916644372")//Güvenilir Hesağ
+    member.roles.add("761483832809488394")//Güvenilir Hesağ
     
       }
 });
