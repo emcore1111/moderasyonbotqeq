@@ -8,22 +8,17 @@ exports.run = function(client, message) {
 const yardım = new Discord.MessageEmbed()
 .setColor('RANDOM')
 .setTitle(`${client.user.username} - Komutlarım`)
-.setDescription(`
-**\`Genel\`**
-
+.setDescription(`**\`Genel\`**
 » \`${prefix}avatar\`: **Avatarınızı Atar**
 » \`${prefix}say\`: **Üye Durum Grafiğini Gösterir**
 » \`${prefix}kullanıcı-bilgi\`: **Etiketlediğin & Kendi Profilin Hakkında Bilgi Verir**
 
 **\`Kayıt\`**
-
 » \`${prefix}erkek/kız <isim> <yas>\`: **Belirtilen Kullanıcıyı Kayıt Edersiniz**
 » \`${prefix}nick <isim> <yas>\`: **Belirtilen Kullanıcının İsmini Değiştirirsiniz**
 » \`${prefix}vip al/ver\`: **Kullanıcıya Vip Al/Ver**
 
-
 **\`Yetkili\`**
-
 » \`${prefix}ban <kullanıcı> <sebep>\`: **Belirtilen Kullanıcıyı Sunucudan Yasaklar**
 » \`${prefix}kick <kullanıcı> <sebep>\`: **Belirtilen Kullanıcıyı Sunucudan Atar**
 » \`${prefix}mute <kullanıcı> <süre> <sebep>\`: **Kullanıcıyı Belirtilen Süre Boyunca Sohbet Kanalında Susturur**
