@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
 
   
   db.add(`nick_${message.author.id}`,1)
-  member.setNickname(`${isim} | ${yaş}`);
+  member.setNickname(`${isim} • ${yaş}`);
   
     
   

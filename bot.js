@@ -314,7 +314,7 @@ client.channels.cache.get("762313900262817792").send(oskobs)//kanalid
 
 /////OTOİSİM
 client.on('guildMemberAdd', member => {  
- member.setNickname('İsim Yaş')////YENI GELENLERE VERILCEK ISIM
+ member.setNickname('İsim • Yaş')////YENI GELENLERE VERILCEK ISIM
 })
 
 //ŞÜpheli Güvenli Hesap Belirleme

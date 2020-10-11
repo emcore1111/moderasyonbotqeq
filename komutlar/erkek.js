@@ -23,7 +23,7 @@ exports.run = async(client, message, args) => {
    if(!isim) return message.channel.send('İsim belirtmelisin')
    if(isNaN(yas)) return message.channel.send('Yaş belirtmelisin')
 
-   kayıt.setNickname(`${isim} | ${yas}`)
+   kayıt.setNickname(`${isim} • ${yas}`)
    kayıt.roles.add(kız)
    kayıt.roles.remove(kayıtsız)
    let embed = new Discord.MessageEmbed()
