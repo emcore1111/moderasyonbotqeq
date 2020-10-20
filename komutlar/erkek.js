@@ -3,7 +3,7 @@ const db = require('quick.db');
 
 exports.run = async(client, message, args) => {
    if(!message.member.roles.cache.has('Yetkilirolid')) return message.channel.send('Bu komutu kullanabilmek için gerekli yetkiye sahip değilsin : `rôl adı`')
-   let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
+   let member = message.mentions.users.first() || c(arlient.users.cache.getgs.join(' '))
    if(!member) {
        return message.channel.send('Bir kişi etiketlemelisin')
    }
